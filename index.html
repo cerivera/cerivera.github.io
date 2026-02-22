@@ -200,12 +200,13 @@
             box-shadow: var(--shadow-sm);
         }
 
-        .hero-badge span {
+        .hero-badge span:first-child {
             width: 8px;
             height: 8px;
             background: var(--green-500);
             border-radius: 50%;
             animation: pulse 2s infinite;
+            flex-shrink: 0;
         }
 
         @keyframes pulse {
