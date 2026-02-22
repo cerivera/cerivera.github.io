@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Els Millors Restaurants Vegans de Barcelona</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --green-50: #f0fdf4;
+            --green-100: #dcfce7;
+            --green-200: #bbf7d0;
+            --green-400: #4ade80;
+            --green-500: #22c55e;
+            --green-600: #16a34a;
+            --green-700: #15803d;
+            --green-800: #166534;
+            --green-900: #14532d;
+            --sand-50: #fafaf5;
+            --sand-100: #f5f5eb;
+            --sand-200: #e8e8d8;
+            --warm-800: #292524;
+            --warm-700: #44403c;
+            --warm-600: #57534e;
+            --warm-500: #78716c;
+            --warm-400: #a8a29e;
+            --warm-300: #d6d3d1;
+            --radius: 16px;
+            --radius-sm: 10px;
+            --shadow-sm: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.04);
+            --shadow-lg: 0 10px 40px rgba(0,0,0,0.1), 0 4px 12px rgba(0,0,0,0.05);
+            --transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--sand-50);
+            color: var(--warm-800);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            background: rgba(250, 250, 245, 0.85);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(0,0,0,0.06);
+            transition: var(--transition);
+        }
+
+        nav.scrolled {
+            box-shadow: var(--shadow-sm);
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 64px;
+        }
+
+        .nav-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--green-700);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-logo svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: var(--warm-600);
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: color var(--transition);
+        }
+
+        .nav-links a:hover {
+            color: var(--green-700);
+        }
+
+        .lang-toggle {
+            display: flex;
+            background: var(--sand-200);
+            border-radius: 100px;
+            padding: 3px;
+            gap: 2px;
+        }
+
+        .lang-btn {
+            border: none;
+            background: transparent;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            color: var(--warm-500);
+            transition: var(--transition);
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.02em;
+        }
+
+        .lang-btn.active {
+            background: white;
+            color: var(--green-700);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .lang-btn:hover:not(.active) {
+            color: var(--warm-800);
+        }
+
+        /* ── HERO ── */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 24px 80px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(160deg, var(--sand-50) 0%, var(--green-50) 50%, var(--sand-100) 100%);
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 600px;
+            height: 600px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.08) 0%, transparent 70%);
+            top: -100px;
+            right: -100px;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(34, 197, 94, 0.06) 0%, transparent 70%);
+            bottom: -50px;
+            left: -50px;
+        }
+
+        .hero-content {
+            max-width: 800px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 1px solid var(--green-200);
+            padding: 8px 20px;
+            border-radius: 100px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--green-700);
+            margin-bottom: 32px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .hero-badge span {
+            width: 8px;
+            height: 8px;
+            background: var(--green-500);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { opacity: 1; transform: scale(1); }
+            50% { opacity: 0.5; transform: scale(1.2); }
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 6vw, 4.5rem);
+            line-height: 1.1;
+            color: var(--warm-800);
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+        }
+
+        .hero h1 em {
+            color: var(--green-600);
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--warm-500);
+            max-width: 560px;
+            margin: 0 auto 40px;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: var(--green-700);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 100px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: var(--transition);
+            box-shadow: 0 4px 16px rgba(22, 163, 74, 0.3);
+        }
+
+        .hero-cta:hover {
+            background: var(--green-800);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(22, 163, 74, 0.35);
+        }
+
+        .hero-cta svg {
+            width: 18px;
+            height: 18px;
+            transition: transform var(--transition);
+        }
+
+        .hero-cta:hover svg {
+            transform: translateY(3px);
+        }
+
+        /* ── SECTIONS ── */
+        section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 24px;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 64px;
+        }
+
+        .section-label {
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--green-600);
+            margin-bottom: 16px;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+            color: var(--warm-800);
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: var(--warm-500);
+            max-width: 520px;
+            margin: 0 auto;
+        }
+
+        /* ── RESTAURANT CARDS ── */
+        .restaurants-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+            gap: 32px;
+        }
+
+        .card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .card-img {
+            height: 220px;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+        }
+
+        .card-img::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.03));
+        }
+
+        .card-badge {
+            position: absolute;
+            top: 16px;
+            left: 16px;
+            background: white;
+            padding: 6px 14px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            color: var(--green-700);
+            box-shadow: var(--shadow-md);
+        }
+
+        .card-body {
+            padding: 28px;
+        }
+
+        .card-neighborhood {
+            font-size: 0.78rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: var(--green-600);
+            margin-bottom: 8px;
+        }
+
+        .card-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.4rem;
+            margin-bottom: 12px;
+            color: var(--warm-800);
+        }
+
+        .card-desc {
+            font-size: 0.92rem;
+            color: var(--warm-500);
+            line-height: 1.65;
+            margin-bottom: 20px;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            background: var(--green-50);
+            color: var(--green-700);
+            padding: 5px 12px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        .card-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid var(--sand-200);
+        }
+
+        .card-price {
+            font-size: 0.85rem;
+            color: var(--warm-500);
+        }
+
+        .card-price strong {
+            color: var(--warm-800);
+        }
+
+        .card-rating {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            color: var(--warm-800);
+        }
+
+        .card-rating svg {
+            width: 16px;
+            height: 16px;
+            fill: #facc15;
+        }
+
+        /* ── ABOUT SECTION ── */
+        .about {
+            background: white;
+            border-radius: var(--radius);
+            padding: 64px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 64px;
+            align-items: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0,0,0,0.04);
+        }
+
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: var(--warm-800);
+        }
+
+        .about-text p {
+            color: var(--warm-500);
+            font-size: 0.95rem;
+            line-height: 1.75;
+            margin-bottom: 16px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            color: var(--green-700);
+            font-weight: 700;
+        }
+
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--warm-500);
+            margin-top: 4px;
+        }
+
+        .about-visual {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .about-img {
+            border-radius: var(--radius-sm);
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .about-img:first-child {
+            grid-column: span 2;
+            height: 200px;
+        }
+
+        /* ── TIPS SECTION ── */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 24px;
+        }
+
+        .tip-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 36px;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(0,0,0,0.04);
+            transition: var(--transition);
+        }
+
+        .tip-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .tip-icon {
+            width: 52px;
+            height: 52px;
+            border-radius: 14px;
+            background: var(--green-50);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .tip-card h3 {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: var(--warm-800);
+        }
+
+        .tip-card p {
+            font-size: 0.88rem;
+            color: var(--warm-500);
+            line-height: 1.65;
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            background: var(--warm-800);
+            color: var(--warm-400);
+            padding: 64px 24px 32px;
+            margin-top: 40px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+
+        .footer-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: white;
+            margin-bottom: 12px;
+        }
+
+        .footer-desc {
+            font-size: 0.85rem;
+            line-height: 1.6;
+            max-width: 300px;
+        }
+
+        .footer-links h4 {
+            color: white;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
+        .footer-links a {
+            display: block;
+            color: var(--warm-400);
+            text-decoration: none;
+            font-size: 0.85rem;
+            margin-bottom: 10px;
+            transition: color var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--green-400);
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 48px auto 0;
+            padding-top: 24px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            font-size: 0.8rem;
+            text-align: center;
+        }
+
+        /* ── MOBILE MENU ── */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
+            color: var(--warm-700);
+        }
+
+        .mobile-menu-btn svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 900px) {
+            .about {
+                grid-template-columns: 1fr;
+                padding: 40px 28px;
+            }
+            .about-visual { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .nav-inner { height: 56px; }
+
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 56px;
+                left: 0;
+                right: 0;
+                background: rgba(250, 250, 245, 0.98);
+                backdrop-filter: blur(20px);
+                padding: 24px;
+                gap: 20px;
+                border-bottom: 1px solid rgba(0,0,0,0.06);
+                box-shadow: var(--shadow-md);
+            }
+
+            .hero { min-height: auto; padding: 140px 24px 80px; }
+            .hero h1 { font-size: 2.4rem; }
+            .restaurants-grid { grid-template-columns: 1fr; }
+            section { padding: 64px 20px; }
+        }
+
+        /* ── SCROLL ANIMATIONS ── */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+
+<!-- ═══════ NAV ═══════ -->
+<nav id="navbar">
+    <div class="nav-inner">
+        <a href="#" class="nav-logo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><path d="M9 9h.01"/><path d="M15 9h.01"/></svg>
+            VeganBCN
+        </a>
+
+        <ul class="nav-links" id="navLinks">
+            <li><a href="#restaurants" data-i18n="nav_restaurants">Restaurants</a></li>
+            <li><a href="#about" data-i18n="nav_about">Sobre</a></li>
+            <li><a href="#tips" data-i18n="nav_tips">Consells</a></li>
+            <li>
+                <div class="lang-toggle">
+                    <button class="lang-btn active" data-lang="ca">CA</button>
+                    <button class="lang-btn" data-lang="es">ES</button>
+                    <button class="lang-btn" data-lang="en">EN</button>
+                </div>
+            </li>
+        </ul>
+
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Menu">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
+    </div>
+</nav>
+
+<!-- ═══════ HERO ═══════ -->
+<header class="hero">
+    <div class="hero-content">
+        <div class="hero-badge">
+            <span></span>
+            <span data-i18n="hero_badge">Guia actualitzada 2026</span>
+        </div>
+        <h1 data-i18n="hero_title">Els Millors Restaurants <em>Vegans</em> de Barcelona</h1>
+        <p data-i18n="hero_desc">Descobreix els espais gastronòmics vegans més increïbles de la ciutat comtal. Cuina conscient, sabors autèntics i experiències inoblidables.</p>
+        <a href="#restaurants" class="hero-cta">
+            <span data-i18n="hero_cta">Explora els restaurants</span>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
+        </a>
+    </div>
+</header>
+
+<!-- ═══════ RESTAURANTS ═══════ -->
+<section id="restaurants">
+    <div class="section-header fade-up">
+        <p class="section-label" data-i18n="restaurants_label">Selecció curada</p>
+        <h2 class="section-title" data-i18n="restaurants_title">On menjar vegà a Barcelona</h2>
+        <p class="section-subtitle" data-i18n="restaurants_subtitle">Hem visitat i seleccionat els millors restaurants vegans perquè puguis gaudir de cada àpat.</p>
+    </div>
+
+    <div class="restaurants-grid">
+
+        <!-- Card 1 -->
+        <div class="card fade-up">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1512621776951-a57141f2eefd?w=600&h=400&fit=crop')">
+                <div class="card-badge" data-i18n="badge_top">Top Pick</div>
+            </div>
+            <div class="card-body">
+                <p class="card-neighborhood">Gràcia</p>
+                <h3 class="card-name">Petit Brot</h3>
+                <p class="card-desc" data-i18n="r1_desc">Cuina crudivegana i vegana amb productes ecològics i de proximitat. Un espai acollidor amb plats que sorprenen per la seva creativitat i sabor.</p>
+                <div class="card-tags">
+                    <span class="tag" data-i18n="tag_raw">Cru</span>
+                    <span class="tag" data-i18n="tag_organic">Ecològic</span>
+                    <span class="tag" data-i18n="tag_gf">Sense gluten</span>
+                </div>
+                <div class="card-footer">
+                    <span class="card-price" data-i18n="r1_price"><strong>€€</strong> · Avg. 15-20€</span>
+                    <span class="card-rating">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        4.7
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card fade-up">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1543339308-d595c4974a4b?w=600&h=400&fit=crop')">
+                <div class="card-badge" data-i18n="badge_popular">Popular</div>
+            </div>
+            <div class="card-body">
+                <p class="card-neighborhood">El Raval</p>
+                <h3 class="card-name">Flax & Kale</h3>
+                <p class="card-desc" data-i18n="r2_desc">Restaurant flexitarià amb una carta principalment vegetal. Famós pels seus plats innovadors, smoothies espectaculars i un ambient vibrant al cor de Barcelona.</p>
+                <div class="card-tags">
+                    <span class="tag" data-i18n="tag_flexitarian">Flexitarià</span>
+                    <span class="tag" data-i18n="tag_brunch">Brunch</span>
+                    <span class="tag" data-i18n="tag_smoothies">Smoothies</span>
+                </div>
+                <div class="card-footer">
+                    <span class="card-price" data-i18n="r2_price"><strong>€€€</strong> · Avg. 20-30€</span>
+                    <span class="card-rating">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        4.5
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card fade-up">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1540914124281-342587941389?w=600&h=400&fit=crop')">
+                <div class="card-badge" data-i18n="badge_cozy">Acollidor</div>
+            </div>
+            <div class="card-body">
+                <p class="card-neighborhood">Sant Antoni</p>
+                <h3 class="card-name">Veggie Garden</h3>
+                <p class="card-desc" data-i18n="r3_desc">Un oasi vegà a Sant Antoni amb cuina casolana i menú diari a preu reduït. Ideal per als que busquen menjar sa, honest i deliciós sense complicacions.</p>
+                <div class="card-tags">
+                    <span class="tag" data-i18n="tag_homemade">Casolà</span>
+                    <span class="tag" data-i18n="tag_dailymenu">Menú diari</span>
+                    <span class="tag" data-i18n="tag_affordable">Econòmic</span>
+                </div>
+                <div class="card-footer">
+                    <span class="card-price" data-i18n="r3_price"><strong>€</strong> · Avg. 10-15€</span>
+                    <span class="card-rating">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        4.6
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card fade-up">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=600&h=400&fit=crop')">
+                <div class="card-badge" data-i18n="badge_creative">Creatiu</div>
+            </div>
+            <div class="card-body">
+                <p class="card-neighborhood">El Born</p>
+                <h3 class="card-name">Teresa Carles</h3>
+                <p class="card-desc" data-i18n="r4_desc">Pioner de la cuina vegetariana i vegana a Barcelona. Ofereix plats elaborats amb productes frescos i una carta que evoluciona amb les estacions.</p>
+                <div class="card-tags">
+                    <span class="tag" data-i18n="tag_seasonal">De temporada</span>
+                    <span class="tag" data-i18n="tag_pioneer">Pioner</span>
+                    <span class="tag" data-i18n="tag_terrace">Terrassa</span>
+                </div>
+                <div class="card-footer">
+                    <span class="card-price" data-i18n="r4_price"><strong>€€</strong> · Avg. 18-25€</span>
+                    <span class="card-rating">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        4.6
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card fade-up">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?w=600&h=400&fit=crop')">
+                <div class="card-badge" data-i18n="badge_trendy">Tendència</div>
+            </div>
+            <div class="card-body">
+                <p class="card-neighborhood">Eixample</p>
+                <h3 class="card-name">Enjoy Vegan</h3>
+                <p class="card-desc" data-i18n="r5_desc">Cuina vegana d'autor amb influències asiàtiques i mediterrànies. Presentacions impecables, sabors intensos i una experiència gastronòmica que no obldaràs.</p>
+                <div class="card-tags">
+                    <span class="tag" data-i18n="tag_asian">Asiàtic</span>
+                    <span class="tag" data-i18n="tag_mediterranean">Mediterrani</span>
+                    <span class="tag" data-i18n="tag_finedining">Gastronòmic</span>
+                </div>
+                <div class="card-footer">
+                    <span class="card-price" data-i18n="r5_price"><strong>€€€</strong> · Avg. 25-35€</span>
+                    <span class="card-rating">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        4.8
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="card fade-up">
+            <div class="card-img" style="background-image: url('https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=600&h=400&fit=crop')">
+                <div class="card-badge" data-i18n="badge_hidden">Joia amagada</div>
+            </div>
+            <div class="card-body">
+                <p class="card-neighborhood">Poble Sec</p>
+                <h3 class="card-name">Rasoterra</h3>
+                <p class="card-desc" data-i18n="r6_desc">Bistrot vegà amb productes de quilòmetre zero i vins naturals. Un ambient íntim perfecte per a sopars romàntics o trobades amb amics.</p>
+                <div class="card-tags">
+                    <span class="tag" data-i18n="tag_km0">Km 0</span>
+                    <span class="tag" data-i18n="tag_wine">Vins naturals</span>
+                    <span class="tag" data-i18n="tag_bistro">Bistrot</span>
+                </div>
+                <div class="card-footer">
+                    <span class="card-price" data-i18n="r6_price"><strong>€€</strong> · Avg. 18-25€</span>
+                    <span class="card-rating">
+                        <svg viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+                        4.7
+                    </span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<!-- ═══════ ABOUT ═══════ -->
+<section id="about">
+    <div class="about fade-up">
+        <div class="about-text">
+            <p class="section-label" data-i18n="about_label">Per què Barcelona?</p>
+            <h2 data-i18n="about_title">La capital vegana del Mediterrani</h2>
+            <p data-i18n="about_p1">Barcelona s'ha consolidat com una de les ciutats europees amb més opcions veganes. La cultura gastronòmica catalana, amb la seva riquesa de verdures, llegums i productes de la terra, és una base perfecta per a la cuina vegana.</p>
+            <p data-i18n="about_p2">Des dels mercats tradicionals com la Boqueria fins als restaurants d'avantguarda, la ciutat ofereix una experiència vegana completa i diversa per a tots els gustos i butxaques.</p>
+            <div class="about-stats">
+                <div class="stat">
+                    <div class="stat-number">150+</div>
+                    <div class="stat-label" data-i18n="stat_restaurants">Restaurants vegans</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">10</div>
+                    <div class="stat-label" data-i18n="stat_districts">Barris amb opcions</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4.6</div>
+                    <div class="stat-label" data-i18n="stat_rating">Valoració mitjana</div>
+                </div>
+            </div>
+        </div>
+        <div class="about-visual">
+            <div class="about-img" style="background-image: url('https://images.unsplash.com/photo-1583608205776-bfd35f0d9f83?w=600&h=300&fit=crop')"></div>
+            <div class="about-img" style="background-image: url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=300&h=250&fit=crop')"></div>
+            <div class="about-img" style="background-image: url('https://images.unsplash.com/photo-1490818387583-1baba5e638af?w=300&h=250&fit=crop')"></div>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ TIPS ═══════ -->
+<section id="tips">
+    <div class="section-header fade-up">
+        <p class="section-label" data-i18n="tips_label">Guia pràctica</p>
+        <h2 class="section-title" data-i18n="tips_title">Consells per menjar vegà a Barcelona</h2>
+        <p class="section-subtitle" data-i18n="tips_subtitle">Tot el que necessites saber per gaudir de la millor cuina vegana a la ciutat.</p>
+    </div>
+
+    <div class="tips-grid">
+        <div class="tip-card fade-up">
+            <div class="tip-icon">&#127807;</div>
+            <h3 data-i18n="tip1_title">Reserva amb antelació</h3>
+            <p data-i18n="tip1_desc">Els restaurants vegans populars s'omplen ràpidament, especialment els caps de setmana. Reserva amb un o dos dies d'antelació per assegurar taula.</p>
+        </div>
+        <div class="tip-card fade-up">
+            <div class="tip-icon">&#128205;</div>
+            <h3 data-i18n="tip2_title">Explora els barris</h3>
+            <p data-i18n="tip2_desc">Cada barri té la seva personalitat vegana. Gràcia és bohemi, el Born és trendy, i Sant Antoni ofereix opcions més locals i autèntiques.</p>
+        </div>
+        <div class="tip-card fade-up">
+            <div class="tip-icon">&#127860;</div>
+            <h3 data-i18n="tip3_title">Prova el menú del dia</h3>
+            <p data-i18n="tip3_desc">Molts restaurants ofereixen un menú diari molt complet per entre 10 i 15 euros. És la millor manera de tastar la cuina vegana sense gastar massa.</p>
+        </div>
+        <div class="tip-card fade-up">
+            <div class="tip-icon">&#128172;</div>
+            <h3 data-i18n="tip4_title">Parla amb els locals</h3>
+            <p data-i18n="tip4_desc">La comunitat vegana de Barcelona és molt activa. Segueix grups locals a xarxes socials per descobrir nous llocs i esdeveniments vegans.</p>
+        </div>
+    </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer>
+    <div class="footer-inner">
+        <div>
+            <div class="footer-brand">VeganBCN</div>
+            <p class="footer-desc" data-i18n="footer_desc">La teva guia definitiva per descobrir la millor cuina vegana de Barcelona. Actualitzada regularment amb noves recomanacions.</p>
+        </div>
+        <div class="footer-links">
+            <h4 data-i18n="footer_sections">Seccions</h4>
+            <a href="#restaurants" data-i18n="nav_restaurants">Restaurants</a>
+            <a href="#about" data-i18n="nav_about">Sobre</a>
+            <a href="#tips" data-i18n="nav_tips">Consells</a>
+        </div>
+        <div class="footer-links">
+            <h4 data-i18n="footer_contact">Contacte</h4>
+            <a href="#">hola@veganbcn.cat</a>
+            <a href="#">Instagram</a>
+            <a href="#">Twitter</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 VeganBCN. <span data-i18n="footer_rights">Tots els drets reservats.</span></p>
+    </div>
+</footer>
+
+<script>
+// ═══════ TRANSLATIONS ═══════
+const translations = {
+    ca: {
+        nav_restaurants: "Restaurants",
+        nav_about: "Sobre",
+        nav_tips: "Consells",
+        hero_badge: "Guia actualitzada 2026",
+        hero_title: 'Els Millors Restaurants <em>Vegans</em> de Barcelona',
+        hero_desc: "Descobreix els espais gastronòmics vegans més increïbles de la ciutat comtal. Cuina conscient, sabors autèntics i experiències inoblidables.",
+        hero_cta: "Explora els restaurants",
+        restaurants_label: "Selecció curada",
+        restaurants_title: "On menjar vegà a Barcelona",
+        restaurants_subtitle: "Hem visitat i seleccionat els millors restaurants vegans perquè puguis gaudir de cada àpat.",
+        badge_top: "Top Pick",
+        badge_popular: "Popular",
+        badge_cozy: "Acollidor",
+        badge_creative: "Creatiu",
+        badge_trendy: "Tendència",
+        badge_hidden: "Joia amagada",
+        r1_desc: "Cuina crudivegana i vegana amb productes ecològics i de proximitat. Un espai acollidor amb plats que sorprenen per la seva creativitat i sabor.",
+        r2_desc: "Restaurant flexitarià amb una carta principalment vegetal. Famós pels seus plats innovadors, smoothies espectaculars i un ambient vibrant al cor de Barcelona.",
+        r3_desc: "Un oasi vegà a Sant Antoni amb cuina casolana i menú diari a preu reduït. Ideal per als que busquen menjar sa, honest i deliciós sense complicacions.",
+        r4_desc: "Pioner de la cuina vegetariana i vegana a Barcelona. Ofereix plats elaborats amb productes frescos i una carta que evoluciona amb les estacions.",
+        r5_desc: "Cuina vegana d'autor amb influències asiàtiques i mediterrànies. Presentacions impecables, sabors intensos i una experiència gastronòmica que no oblidaràs.",
+        r6_desc: "Bistrot vegà amb productes de quilòmetre zero i vins naturals. Un ambient íntim perfecte per a sopars romàntics o trobades amb amics.",
+        tag_raw: "Cru",
+        tag_organic: "Ecològic",
+        tag_gf: "Sense gluten",
+        tag_flexitarian: "Flexitarià",
+        tag_brunch: "Brunch",
+        tag_smoothies: "Smoothies",
+        tag_homemade: "Casolà",
+        tag_dailymenu: "Menú diari",
+        tag_affordable: "Econòmic",
+        tag_seasonal: "De temporada",
+        tag_pioneer: "Pioner",
+        tag_terrace: "Terrassa",
+        tag_asian: "Asiàtic",
+        tag_mediterranean: "Mediterrani",
+        tag_finedining: "Gastronòmic",
+        tag_km0: "Km 0",
+        tag_wine: "Vins naturals",
+        tag_bistro: "Bistrot",
+        r1_price: "<strong>€€</strong> · Avg. 15-20€",
+        r2_price: "<strong>€€€</strong> · Avg. 20-30€",
+        r3_price: "<strong>€</strong> · Avg. 10-15€",
+        r4_price: "<strong>€€</strong> · Avg. 18-25€",
+        r5_price: "<strong>€€€</strong> · Avg. 25-35€",
+        r6_price: "<strong>€€</strong> · Avg. 18-25€",
+        about_label: "Per què Barcelona?",
+        about_title: "La capital vegana del Mediterrani",
+        about_p1: "Barcelona s'ha consolidat com una de les ciutats europees amb més opcions veganes. La cultura gastronòmica catalana, amb la seva riquesa de verdures, llegums i productes de la terra, és una base perfecta per a la cuina vegana.",
+        about_p2: "Des dels mercats tradicionals com la Boqueria fins als restaurants d'avantguarda, la ciutat ofereix una experiència vegana completa i diversa per a tots els gustos i butxaques.",
+        stat_restaurants: "Restaurants vegans",
+        stat_districts: "Barris amb opcions",
+        stat_rating: "Valoració mitjana",
+        tips_label: "Guia pràctica",
+        tips_title: "Consells per menjar vegà a Barcelona",
+        tips_subtitle: "Tot el que necessites saber per gaudir de la millor cuina vegana a la ciutat.",
+        tip1_title: "Reserva amb antelació",
+        tip1_desc: "Els restaurants vegans populars s'omplen ràpidament, especialment els caps de setmana. Reserva amb un o dos dies d'antelació per assegurar taula.",
+        tip2_title: "Explora els barris",
+        tip2_desc: "Cada barri té la seva personalitat vegana. Gràcia és bohemi, el Born és trendy, i Sant Antoni ofereix opcions més locals i autèntiques.",
+        tip3_title: "Prova el menú del dia",
+        tip3_desc: "Molts restaurants ofereixen un menú diari molt complet per entre 10 i 15 euros. És la millor manera de tastar la cuina vegana sense gastar massa.",
+        tip4_title: "Parla amb els locals",
+        tip4_desc: "La comunitat vegana de Barcelona és molt activa. Segueix grups locals a xarxes socials per descobrir nous llocs i esdeveniments vegans.",
+        footer_desc: "La teva guia definitiva per descobrir la millor cuina vegana de Barcelona. Actualitzada regularment amb noves recomanacions.",
+        footer_sections: "Seccions",
+        footer_contact: "Contacte",
+        footer_rights: "Tots els drets reservats."
+    },
+    es: {
+        nav_restaurants: "Restaurantes",
+        nav_about: "Acerca de",
+        nav_tips: "Consejos",
+        hero_badge: "Guía actualizada 2026",
+        hero_title: 'Los Mejores Restaurantes <em>Veganos</em> de Barcelona',
+        hero_desc: "Descubre los espacios gastronómicos veganos más increíbles de la ciudad condal. Cocina consciente, sabores auténticos y experiencias inolvidables.",
+        hero_cta: "Explora los restaurantes",
+        restaurants_label: "Selección curada",
+        restaurants_title: "Dónde comer vegano en Barcelona",
+        restaurants_subtitle: "Hemos visitado y seleccionado los mejores restaurantes veganos para que puedas disfrutar de cada comida.",
+        badge_top: "Top Pick",
+        badge_popular: "Popular",
+        badge_cozy: "Acogedor",
+        badge_creative: "Creativo",
+        badge_trendy: "Tendencia",
+        badge_hidden: "Joya escondida",
+        r1_desc: "Cocina crudivegana y vegana con productos ecológicos y de proximidad. Un espacio acogedor con platos que sorprenden por su creatividad y sabor.",
+        r2_desc: "Restaurante flexitariano con una carta principalmente vegetal. Famoso por sus platos innovadores, smoothies espectaculares y un ambiente vibrante en el corazón de Barcelona.",
+        r3_desc: "Un oasis vegano en Sant Antoni con cocina casera y menú diario a precio reducido. Ideal para quienes buscan comida sana, honesta y deliciosa sin complicaciones.",
+        r4_desc: "Pionero de la cocina vegetariana y vegana en Barcelona. Ofrece platos elaborados con productos frescos y una carta que evoluciona con las estaciones.",
+        r5_desc: "Cocina vegana de autor con influencias asiáticas y mediterráneas. Presentaciones impecables, sabores intensos y una experiencia gastronómica inolvidable.",
+        r6_desc: "Bistró vegano con productos de kilómetro cero y vinos naturales. Un ambiente íntimo perfecto para cenas románticas o encuentros con amigos.",
+        tag_raw: "Crudo",
+        tag_organic: "Ecológico",
+        tag_gf: "Sin gluten",
+        tag_flexitarian: "Flexitariano",
+        tag_brunch: "Brunch",
+        tag_smoothies: "Smoothies",
+        tag_homemade: "Casero",
+        tag_dailymenu: "Menú diario",
+        tag_affordable: "Económico",
+        tag_seasonal: "De temporada",
+        tag_pioneer: "Pionero",
+        tag_terrace: "Terraza",
+        tag_asian: "Asiático",
+        tag_mediterranean: "Mediterráneo",
+        tag_finedining: "Gastronómico",
+        tag_km0: "Km 0",
+        tag_wine: "Vinos naturales",
+        tag_bistro: "Bistró",
+        r1_price: "<strong>€€</strong> · Avg. 15-20€",
+        r2_price: "<strong>€€€</strong> · Avg. 20-30€",
+        r3_price: "<strong>€</strong> · Avg. 10-15€",
+        r4_price: "<strong>€€</strong> · Avg. 18-25€",
+        r5_price: "<strong>€€€</strong> · Avg. 25-35€",
+        r6_price: "<strong>€€</strong> · Avg. 18-25€",
+        about_label: "¿Por qué Barcelona?",
+        about_title: "La capital vegana del Mediterráneo",
+        about_p1: "Barcelona se ha consolidado como una de las ciudades europeas con más opciones veganas. La cultura gastronómica catalana, con su riqueza de verduras, legumbres y productos de la tierra, es una base perfecta para la cocina vegana.",
+        about_p2: "Desde los mercados tradicionales como la Boqueria hasta los restaurantes de vanguardia, la ciudad ofrece una experiencia vegana completa y diversa para todos los gustos y bolsillos.",
+        stat_restaurants: "Restaurantes veganos",
+        stat_districts: "Barrios con opciones",
+        stat_rating: "Valoración media",
+        tips_label: "Guía práctica",
+        tips_title: "Consejos para comer vegano en Barcelona",
+        tips_subtitle: "Todo lo que necesitas saber para disfrutar de la mejor cocina vegana en la ciudad.",
+        tip1_title: "Reserva con antelación",
+        tip1_desc: "Los restaurantes veganos populares se llenan rápidamente, especialmente los fines de semana. Reserva con uno o dos días de antelación para asegurar mesa.",
+        tip2_title: "Explora los barrios",
+        tip2_desc: "Cada barrio tiene su personalidad vegana. Gràcia es bohemio, el Born es trendy, y Sant Antoni ofrece opciones más locales y auténticas.",
+        tip3_title: "Prueba el menú del día",
+        tip3_desc: "Muchos restaurantes ofrecen un menú diario muy completo por entre 10 y 15 euros. Es la mejor manera de probar la cocina vegana sin gastar demasiado.",
+        tip4_title: "Habla con los locales",
+        tip4_desc: "La comunidad vegana de Barcelona es muy activa. Sigue grupos locales en redes sociales para descubrir nuevos lugares y eventos veganos.",
+        footer_desc: "Tu guía definitiva para descubrir la mejor cocina vegana de Barcelona. Actualizada regularmente con nuevas recomendaciones.",
+        footer_sections: "Secciones",
+        footer_contact: "Contacto",
+        footer_rights: "Todos los derechos reservados."
+    },
+    en: {
+        nav_restaurants: "Restaurants",
+        nav_about: "About",
+        nav_tips: "Tips",
+        hero_badge: "Updated guide 2026",
+        hero_title: 'The Best <em>Vegan</em> Restaurants in Barcelona',
+        hero_desc: "Discover the most incredible vegan dining spots in Barcelona. Conscious cuisine, authentic flavors, and unforgettable experiences.",
+        hero_cta: "Explore the restaurants",
+        restaurants_label: "Curated selection",
+        restaurants_title: "Where to eat vegan in Barcelona",
+        restaurants_subtitle: "We've visited and selected the best vegan restaurants so you can enjoy every meal.",
+        badge_top: "Top Pick",
+        badge_popular: "Popular",
+        badge_cozy: "Cozy",
+        badge_creative: "Creative",
+        badge_trendy: "Trending",
+        badge_hidden: "Hidden gem",
+        r1_desc: "Raw vegan and vegan cuisine with organic, locally-sourced products. A cozy space with dishes that surprise with their creativity and flavor.",
+        r2_desc: "Flexitarian restaurant with a primarily plant-based menu. Famous for its innovative dishes, spectacular smoothies, and vibrant atmosphere in the heart of Barcelona.",
+        r3_desc: "A vegan oasis in Sant Antoni with homemade cooking and an affordable daily menu. Perfect for those seeking healthy, honest, and delicious food without the fuss.",
+        r4_desc: "Pioneer of vegetarian and vegan cuisine in Barcelona. Offers dishes crafted with fresh produce and a menu that evolves with the seasons.",
+        r5_desc: "Author vegan cuisine with Asian and Mediterranean influences. Impeccable presentations, intense flavors, and a gastronomic experience you won't forget.",
+        r6_desc: "Vegan bistro with zero-kilometer products and natural wines. An intimate atmosphere perfect for romantic dinners or gatherings with friends.",
+        tag_raw: "Raw",
+        tag_organic: "Organic",
+        tag_gf: "Gluten-free",
+        tag_flexitarian: "Flexitarian",
+        tag_brunch: "Brunch",
+        tag_smoothies: "Smoothies",
+        tag_homemade: "Homemade",
+        tag_dailymenu: "Daily menu",
+        tag_affordable: "Affordable",
+        tag_seasonal: "Seasonal",
+        tag_pioneer: "Pioneer",
+        tag_terrace: "Terrace",
+        tag_asian: "Asian",
+        tag_mediterranean: "Mediterranean",
+        tag_finedining: "Fine dining",
+        tag_km0: "Km 0",
+        tag_wine: "Natural wines",
+        tag_bistro: "Bistro",
+        r1_price: "<strong>€€</strong> · Avg. 15-20€",
+        r2_price: "<strong>€€€</strong> · Avg. 20-30€",
+        r3_price: "<strong>€</strong> · Avg. 10-15€",
+        r4_price: "<strong>€€</strong> · Avg. 18-25€",
+        r5_price: "<strong>€€€</strong> · Avg. 25-35€",
+        r6_price: "<strong>€€</strong> · Avg. 18-25€",
+        about_label: "Why Barcelona?",
+        about_title: "The vegan capital of the Mediterranean",
+        about_p1: "Barcelona has established itself as one of Europe's cities with the most vegan options. The Catalan gastronomic culture, with its wealth of vegetables, legumes, and local produce, is a perfect foundation for vegan cuisine.",
+        about_p2: "From traditional markets like La Boqueria to avant-garde restaurants, the city offers a complete and diverse vegan experience for all tastes and budgets.",
+        stat_restaurants: "Vegan restaurants",
+        stat_districts: "Districts with options",
+        stat_rating: "Average rating",
+        tips_label: "Practical guide",
+        tips_title: "Tips for eating vegan in Barcelona",
+        tips_subtitle: "Everything you need to know to enjoy the best vegan cuisine in the city.",
+        tip1_title: "Book in advance",
+        tip1_desc: "Popular vegan restaurants fill up quickly, especially on weekends. Book one or two days ahead to secure a table.",
+        tip2_title: "Explore the neighborhoods",
+        tip2_desc: "Each neighborhood has its own vegan personality. Gràcia is bohemian, El Born is trendy, and Sant Antoni offers more local and authentic options.",
+        tip3_title: "Try the daily menu",
+        tip3_desc: "Many restaurants offer a very complete daily menu for between 10 and 15 euros. It's the best way to taste vegan cuisine without overspending.",
+        tip4_title: "Talk to the locals",
+        tip4_desc: "Barcelona's vegan community is very active. Follow local groups on social media to discover new places and vegan events.",
+        footer_desc: "Your ultimate guide to discovering the best vegan cuisine in Barcelona. Regularly updated with new recommendations.",
+        footer_sections: "Sections",
+        footer_contact: "Contact",
+        footer_rights: "All rights reserved."
+    }
+};
+
+let currentLang = 'ca';
+
+function setLanguage(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+
+    // Update all translatable elements
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+        const key = el.getAttribute('data-i18n');
+        if (translations[lang][key]) {
+            el.innerHTML = translations[lang][key];
+        }
+    });
+
+    // Update page title
+    const titles = {
+        ca: "Els Millors Restaurants Vegans de Barcelona",
+        es: "Los Mejores Restaurantes Veganos de Barcelona",
+        en: "The Best Vegan Restaurants in Barcelona"
+    };
+    document.title = titles[lang];
+
+    // Update active button
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+        btn.classList.toggle('active', btn.dataset.lang === lang);
+    });
+}
+
+// Language toggle
+document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => setLanguage(btn.dataset.lang));
+});
+
+// Mobile menu
+document.getElementById('mobileMenuBtn').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+});
+
+// Close mobile menu on link click
+document.querySelectorAll('.nav-links a').forEach(a => {
+    a.addEventListener('click', () => {
+        document.getElementById('navLinks').classList.remove('open');
+    });
+});
+
+// Navbar scroll effect
+window.addEventListener('scroll', () => {
+    document.getElementById('navbar').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Scroll animations
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+        }
+    });
+}, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Smooth scroll for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) {
+            target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    });
+});
+</script>
+
+</body>
+</html>
